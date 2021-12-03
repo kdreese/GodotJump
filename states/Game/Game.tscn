@@ -6,13 +6,16 @@
 [node name="Game" type="Node2D"]
 
 [node name="Jumper" parent="." instance=ExtResource( 1 )]
-position = Vector2( 200, 85 )
+position = Vector2( 208, 792 )
 
 [node name="Platform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 216, 316 )
+position = Vector2( 208, 456 )
 
 [node name="Platform2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 485, 439 )
+position = Vector2( 512, 696 )
 
 [node name="Platform3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 480, 173 )
+position = Vector2( 544, 336 )
+
+[node name="Platform4" parent="." instance=ExtResource( 2 )]
+position = Vector2( 184, 888 )
