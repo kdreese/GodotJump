@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://objects/Jumper/Jumper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Platform/Platform.tscn" type="PackedScene" id=2]
+
+[node name="Game" type="Node2D"]
+
+[node name="Jumper" parent="." instance=ExtResource( 1 )]
+position = Vector2( 200, 85 )
+
+[node name="Platform" parent="." instance=ExtResource( 2 )]
+position = Vector2( 216, 316 )
+
+[node name="Platform2" parent="." instance=ExtResource( 2 )]
+position = Vector2( 485, 439 )
+
+[node name="Platform3" parent="." instance=ExtResource( 2 )]
+position = Vector2( 480, 173 )
