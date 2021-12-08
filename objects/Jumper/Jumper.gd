@@ -1,9 +1,10 @@
 extends KinematicBody2D
 
 
-const MOVE_SPEED = 150.0
-const GRAVITY := 350.0
-const BOUNCE_SPEED := -450.0
+const MOVE_SPEED = 300.0
+const GRAVITY := 800.0
+const BOUNCE_SPEED := -650.0
+const TERMINAL_VELOCITY := 1000.0
 const JETPACK_DURATION := 2.0
 const SPRING_SPEED := -900.0
 
@@ -30,6 +31,7 @@ func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
 	if jetpack_timer <= 0 :
 		_velocity.y += GRAVITY * delta
+		_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
 	else:
 		jetpack_timer -= delta
 	_velocity = move_and_slide(_velocity, Vector2.UP)
