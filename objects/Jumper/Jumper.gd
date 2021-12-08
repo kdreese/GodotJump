@@ -6,7 +6,7 @@ const GRAVITY := 800.0
 const BOUNCE_SPEED := -650.0
 const TERMINAL_VELOCITY := 1000.0
 const JETPACK_DURATION := 2.0
-const SPRING_SPEED := -900.0
+const SPRING_SPEED := -1000.0
 
 var _velocity := Vector2(0, 0)
 var jetpack_timer := 0.0
@@ -63,4 +63,5 @@ func _on_DeathArea_body_entered(_body: Node) -> void:
 
 func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 	if "Jetpack" in area.get_filename():
+		area.queue_free()
 		jetpack_timer = JETPACK_DURATION
