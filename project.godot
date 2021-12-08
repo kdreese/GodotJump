@@ -42,6 +42,7 @@ move_right={
 
 2d_physics/layer_1="jumper"
 2d_physics/layer_2="platforms"
+2d_physics/layer_3="death_area"
 
 [physics]
 

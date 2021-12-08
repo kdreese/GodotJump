@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://objects/Jumper/Jumper.gd" type="Script" id=2]
@@ -14,7 +14,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 448, 40 )
+
 [node name="Jumper" type="KinematicBody2D"]
+position = Vector2( 1, 0 )
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -27,3 +31,12 @@ frames = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 0, -128 )
 current = true
+
+[node name="DeathArea" type="Area2D" parent="Camera2D"]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/DeathArea"]
+position = Vector2( 0, 408 )
+shape = SubResource( 4 )
+
+[connection signal="body_entered" from="Camera2D/DeathArea" to="." method="_on_DeathArea_body_entered"]
