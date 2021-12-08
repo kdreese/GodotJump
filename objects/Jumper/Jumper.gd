@@ -40,3 +40,12 @@ func _physics_process(delta: float) -> void:
 func position_camera() -> void:
 	$Camera2D.position.x = bounds.x / 2 - position.x
 	$Camera2D.position.y = camera_y_offset + highest_y - position.y
+
+
+func die() -> void:
+	var error := get_tree().reload_current_scene()
+	assert(not error)
+
+
+func _on_DeathArea_body_entered(_body: Node) -> void:
+	die()
