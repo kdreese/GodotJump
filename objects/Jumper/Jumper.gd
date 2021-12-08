@@ -4,8 +4,11 @@ extends KinematicBody2D
 const MOVE_SPEED = 150.0
 const GRAVITY := 350.0
 const BOUNCE_SPEED := -450.0
+const JETPACK_DURATION := 120
 
 var _velocity := Vector2(0, 0)
+var thrust := false
+var jetpack_timer := JETPACK_DURATION
 
 onready var extents := ($CollisionShape2D.shape as RectangleShape2D).extents
 onready var bounds := get_viewport_rect().size
@@ -25,7 +28,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
-	_velocity.y += GRAVITY * delta
+	if not thrust:
+		_velocity.y += GRAVITY * delta
+	else:
+		jetpack_timer -= 1
+		if jetpack_timer <= 0:
+			thrust = false
+			jetpack_timer = JETPACK_DURATION
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	if is_on_floor():
 		_velocity.y = BOUNCE_SPEED
@@ -49,3 +58,7 @@ func die() -> void:
 
 func _on_DeathArea_body_entered(_body: Node) -> void:
 	die()
+
+func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
+	if "Jetpack" in area.get_filename():
+		thrust = true
