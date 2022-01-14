@@ -21,7 +21,6 @@ extents = Vector2( 448, 40 )
 extents = Vector2( 32, 32 )
 
 [node name="Jumper" type="KinematicBody2D"]
-position = Vector2( 1, 0 )
 collision_mask = 2
 script = ExtResource( 2 )
 
@@ -48,7 +47,6 @@ collision_mask = 8
 monitorable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PowerupDetectionArea"]
-position = Vector2( -1, 0 )
 shape = SubResource( 5 )
 
 [connection signal="body_entered" from="Camera2D/DeathArea" to="." method="_on_DeathArea_body_entered"]
