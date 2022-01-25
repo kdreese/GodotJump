@@ -4,15 +4,17 @@ extends Node2D
 const Platform = preload("res://objects/Platform/Platform.tscn")
 
 const PLATFORM_OFFSCREEN_OFFSET := 100.0
-const PLATFORM_SPAWN_DISTANCE := 200.0	# Vertical distance between platform spawns
 const PLATFORM_RANGE = 250.0	# The max horizontal range from the center of the viewport the platforms will vary
 
-onready var next_platform_spawn_y := ($Platforms/FirstPlatform as Node2D).position.y - PLATFORM_SPAWN_DISTANCE
-onready var camera := ($Jumper/Camera2D as Camera2D)
+var next_chunk_spawn_y: float
+
+onready var camera := ($GameObjects/Jumper/Camera2D as Camera2D)
 
 
 func _ready() -> void:
 	randomize()
+	next_chunk_spawn_y = ($GameObjects/ChunkStart as Position2D).position.y
+	$GameObjects/ChunkStart.queue_free()
 
 
 func _physics_process(_delta: float) -> void:
@@ -20,16 +22,24 @@ func _physics_process(_delta: float) -> void:
 	var view_top_y = camera.global_position.y + camera.offset.y - view_size.y / 2
 	var view_bottom_y = view_top_y + view_size.y
 
-	for platform in $Platforms.get_children():
-		if platform.position.y > view_bottom_y + PLATFORM_OFFSCREEN_OFFSET:
-			platform.queue_free()
+	for child in $GameObjects.get_children():
+		if child.position.y > view_bottom_y + PLATFORM_OFFSCREEN_OFFSET:
+			child.queue_free()
 
-	while view_top_y - PLATFORM_OFFSCREEN_OFFSET < next_platform_spawn_y:
-		spawn_platform(Vector2(view_size.x / 2 + rand_range(-PLATFORM_RANGE, PLATFORM_RANGE), next_platform_spawn_y))
-		next_platform_spawn_y -= PLATFORM_SPAWN_DISTANCE
+	while view_top_y - PLATFORM_OFFSCREEN_OFFSET < next_chunk_spawn_y:
+		spawn_chunk("res://templates/platform_chunks/BaseTemplate.tscn")
+		var next_chunk_end := $GameObjects/ChunkEnd as Position2D
+		next_chunk_spawn_y = next_chunk_end.position.y
+		next_chunk_end.free()
 
 
-func spawn_platform(position):
-	var platform = Platform.instance()
-	platform.position = position
-	$Platforms.add_child(platform)
+func spawn_chunk(chunk_path: String):
+	var chunk := load(chunk_path).instance() as Node2D
+	for child in chunk.get_children():
+		var position = child.position
+		position.x += get_viewport_rect().size.x / 2
+		position.y += next_chunk_spawn_y
+		chunk.remove_child(child)
+		$GameObjects.add_child(child)
+		child.position = position
+	chunk.queue_free()
