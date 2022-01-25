@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://objects/Jumper/Jumper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Platform/Platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://states/Game/Game.gd" type="Script" id=3]
 [ext_resource path="res://default_env.tres" type="Environment" id=5]
 
@@ -16,4 +17,7 @@ environment = ExtResource( 5 )
 position = Vector2( 360, 792 )
 
 [node name="ChunkStart" type="Position2D" parent="GameObjects"]
-position = Vector2( 360, 864 )
+position = Vector2( 360, 728 )
+
+[node name="FirstPlatform" parent="GameObjects" instance=ExtResource( 2 )]
+position = Vector2( 360, 896 )
