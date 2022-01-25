@@ -1,6 +1,11 @@
 extends Node2D
 
 
+const CHUNK_TABLE = [
+	["BaseTemplate", true],
+	["BaseTemplate", false],
+]
+
 const Platform = preload("res://objects/Platform/Platform.tscn")
 
 const PLATFORM_OFFSCREEN_OFFSET := 100.0
@@ -27,17 +32,21 @@ func _physics_process(_delta: float) -> void:
 			child.queue_free()
 
 	while view_top_y - PLATFORM_OFFSCREEN_OFFSET < next_chunk_spawn_y:
-		spawn_chunk("res://templates/platform_chunks/BaseTemplate.tscn")
+		var chunk_info := CHUNK_TABLE[randi() % CHUNK_TABLE.size()] as Array
+		spawn_chunk("res://templates/platform_chunks/%s.tscn" % chunk_info[0], chunk_info[1])
 		var next_chunk_end := $GameObjects/ChunkEnd as Position2D
 		next_chunk_spawn_y = next_chunk_end.position.y
 		next_chunk_end.free()
 
 
-func spawn_chunk(chunk_path: String):
+func spawn_chunk(chunk_path: String, randomize_x: bool = false):
 	var chunk := load(chunk_path).instance() as Node2D
 	for child in chunk.get_children():
 		var position = child.position
-		position.x += get_viewport_rect().size.x / 2
+		var view_width := get_viewport_rect().size.x
+		if randomize_x:
+			position.x = rand_range(-PLATFORM_RANGE, PLATFORM_RANGE)
+		position.x += view_width / 2
 		position.y += next_chunk_spawn_y
 		chunk.remove_child(child)
 		$GameObjects.add_child(child)
