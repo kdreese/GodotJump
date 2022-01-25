@@ -3,11 +3,14 @@ extends KinematicBody2D
 
 const MOVE_SPEED = 300.0
 const GRAVITY := 800.0
+const JETPACK_GRAVITY := 200.0
 const BOUNCE_SPEED := -650.0
 const TERMINAL_VELOCITY := 1000.0
 const JETPACK_DURATION := 2.0
+const JETPACK_SPEED := -900.0
 const SPRING_SPEED := -1000.0
 
+var _gravity := GRAVITY
 var _velocity := Vector2(0, 0)
 var jetpack_timer := 0.0
 
@@ -29,11 +32,13 @@ func _process(_delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
-	if jetpack_timer <= 0 :
-		_velocity.y += GRAVITY * delta
-		_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
-	else:
+	if jetpack_timer > 0:
 		jetpack_timer -= delta
+		if jetpack_timer <= 0:
+			_gravity = GRAVITY
+
+	_velocity.y += _gravity * delta
+	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	if is_on_floor():
 		if "Spring" in get_last_slide_collision().collider.get_filename():
@@ -65,3 +70,5 @@ func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 	if "Jetpack" in area.get_filename():
 		area.queue_free()
 		jetpack_timer = JETPACK_DURATION
+		_velocity.y = JETPACK_SPEED
+		_gravity = JETPACK_GRAVITY
