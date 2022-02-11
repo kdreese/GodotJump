@@ -4,6 +4,15 @@ extends Node2D
 const CHUNK_TABLE = [
 	["BaseTemplate", true],
 	["BaseTemplate", false],
+	["SquishTemplate", true],
+	["SquishTemplate", false],
+	["SpacedTemplate", true],
+	["BaseSpringTemplate", true],
+	["BaseJetpackTemplate", true],
+	["BaseBlackholeTemplate", false],
+	["BaseBlackholeTemplate", true],
+	["BlackholeReverseTemplate", false],	# reverse template solves for blackhole density on the right
+	["BlackholeAvoidTemplate", false],
 ]
 
 const Platform = preload("res://objects/Platform/Platform.tscn")
