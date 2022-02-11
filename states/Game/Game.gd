@@ -11,25 +11,41 @@ const Platform = preload("res://objects/Platform/Platform.tscn")
 const PLATFORM_OFFSCREEN_OFFSET := 100.0
 const PLATFORM_RANGE = 250.0	# The max horizontal range from the center of the viewport the platforms will vary
 
-var next_chunk_spawn_y: float
-
-onready var camera := ($GameObjects/Jumper/Camera2D as Camera2D)
+onready var next_chunk_spawn_y := ($GameObjects/ChunkStart as Position2D).position.y
+onready var highest_y := ($GameObjects/Jumper as KinematicBody2D).position.y
+onready var camera_y_offset := ($Camera2D as Camera2D).position.y
 
 
 func _ready() -> void:
 	randomize()
-	next_chunk_spawn_y = ($GameObjects/ChunkStart as Position2D).position.y
-	$GameObjects/ChunkStart.queue_free()
+	$GameObjects/ChunkStart.free()
+
+	generate_chunks()
+
+
+func _process(_delta: float) -> void:
+	var jumper: KinematicBody2D = get_node_or_null("GameObjects/Jumper")
+	if jumper == null:
+		return
+	if jumper.position.y < highest_y:
+		highest_y = jumper.position.y
+	$Camera2D.position.y = highest_y + camera_y_offset
 
 
 func _physics_process(_delta: float) -> void:
 	var view_size = get_viewport_rect().size
-	var view_top_y = camera.global_position.y + camera.offset.y - view_size.y / 2
-	var view_bottom_y = view_top_y + view_size.y
+	var view_bottom_y = $Camera2D.global_position.y + $Camera2D.offset.y + view_size.y / 2
 
 	for child in $GameObjects.get_children():
 		if child.position.y > view_bottom_y + PLATFORM_OFFSCREEN_OFFSET:
 			child.queue_free()
+
+	generate_chunks()
+
+
+func generate_chunks() -> void:
+	var view_size = get_viewport_rect().size
+	var view_top_y = $Camera2D.global_position.y + $Camera2D.offset.y - view_size.y / 2
 
 	while view_top_y - PLATFORM_OFFSCREEN_OFFSET < next_chunk_spawn_y:
 		var chunk_info := CHUNK_TABLE[randi() % CHUNK_TABLE.size()] as Array
@@ -39,14 +55,12 @@ func _physics_process(_delta: float) -> void:
 		next_chunk_end.free()
 
 
-func spawn_chunk(chunk_path: String, randomize_x: bool = false):
+func spawn_chunk(chunk_path: String, randomize_x: bool = false) -> void:
 	var chunk := load(chunk_path).instance() as Node2D
 	for child in chunk.get_children():
 		var position = child.position
-		var view_width := get_viewport_rect().size.x
 		if randomize_x:
 			position.x = rand_range(-PLATFORM_RANGE, PLATFORM_RANGE)
-		position.x += view_width / 2
 		position.y += next_chunk_spawn_y
 		chunk.remove_child(child)
 		$GameObjects.add_child(child)
