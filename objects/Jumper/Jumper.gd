@@ -66,9 +66,14 @@ func die() -> void:
 func _on_DeathArea_body_entered(_body: Node) -> void:
 	die()
 
+
 func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 	if "Jetpack" in area.get_filename():
 		area.queue_free()
 		jetpack_timer = JETPACK_DURATION
 		_velocity.y = JETPACK_SPEED
 		_gravity = JETPACK_GRAVITY
+
+
+func _on_EnemyDetectionArea_body_entered(_body: Node) -> void:
+	die()
