@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	if is_on_floor():
-		if "Spring" in get_last_slide_collision().collider.get_filename():
+		if get_last_slide_collision().collider.is_in_group("spring"):
 			_velocity.y = SPRING_SPEED
 		else:
 			_velocity.y = BOUNCE_SPEED
@@ -66,9 +66,14 @@ func die() -> void:
 func _on_DeathArea_body_entered(_body: Node) -> void:
 	die()
 
+
 func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
-	if "Jetpack" in area.get_filename():
+	if area.is_in_group("jetpack"):
 		area.queue_free()
 		jetpack_timer = JETPACK_DURATION
 		_velocity.y = JETPACK_SPEED
 		_gravity = JETPACK_GRAVITY
+
+
+func _on_EnemyDetectionArea_body_entered(_body: Node) -> void:
+	die()

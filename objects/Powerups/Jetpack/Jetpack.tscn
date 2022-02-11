@@ -2,7 +2,7 @@
 
 [sub_resource type="RectangleShape2D" id=1]
 
-[node name="Jetpack" type="Area2D"]
+[node name="Jetpack" type="Area2D" groups=["jetpack", "powerup"]]
 collision_layer = 8
 collision_mask = 0
 monitoring = false
