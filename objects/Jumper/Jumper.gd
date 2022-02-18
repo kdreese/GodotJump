@@ -1,6 +1,9 @@
 extends KinematicBody2D
 
 
+signal game_over
+
+
 const MOVE_SPEED = 300.0
 const GRAVITY := 800.0
 const JETPACK_GRAVITY := 200.0
@@ -41,8 +44,8 @@ func _physics_process(delta: float) -> void:
 
 
 func die() -> void:
-	var error := get_tree().reload_current_scene()
-	assert(not error)
+	emit_signal("game_over")
+	queue_free()
 
 
 func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
