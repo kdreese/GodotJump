@@ -14,6 +14,10 @@ config/name="godot-jump"
 run/main_scene="res://states/MainMenu/MainMenu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://states/MainMenu/Global.gd"
+
 [display]
 
 window/size/width=720

@@ -52,7 +52,7 @@ func _process(_delta: float) -> void:
 		highest_y = jumper.position.y
 	$Camera2D.position.y = highest_y + camera_y_offset
 	score = (-highest_y / 10) as int
-	$CanvasLayer/UI/Label.text = "Score: %d" % score
+	$CanvasLayer/UI.set_score(score)
 	# Increment spawning difficulty level
 	if (spawn_level < SPAWN_PROBABILITY_BREAKPOINTS.size()) and (score > SPAWN_PROBABILITY_BREAKPOINTS[spawn_level]):
 		spawn_level += 1
@@ -109,3 +109,7 @@ func spawn_chunk(chunk_path: String, randomize_x: bool = false) -> void:
 		$GameObjects.add_child(child)
 		child.position = position
 	chunk.queue_free()
+
+
+func _on_Jumper_game_over() -> void:
+	$CanvasLayer/UI.game_over()

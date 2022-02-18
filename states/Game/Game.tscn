@@ -41,3 +41,5 @@ position = Vector2( 0, 104 )
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
+
+[connection signal="game_over" from="GameObjects/Jumper" to="." method="_on_Jumper_game_over"]
