@@ -52,6 +52,13 @@ func _physics_process(_delta: float) -> void:
 	generate_chunks()
 
 
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action("pause_escape"):
+		# TODO - add pause screen
+		var error = get_tree().change_scene("res://states/MainMenu/MainMenu.tscn")
+		assert(not error)
+
+
 func generate_chunks() -> void:
 	var view_size = get_viewport_rect().size
 	var view_top_y = $Camera2D.global_position.y + $Camera2D.offset.y - view_size.y / 2

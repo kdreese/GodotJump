@@ -1,0 +1,207 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/TitleFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://states/MainMenu/MainMenu.gd" type="Script" id=2]
+[ext_resource path="res://fonts/SmallFont.tres" type="DynamicFont" id=3]
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -203.0
+margin_top = -163.0
+margin_right = 203.0
+margin_bottom = 163.0
+custom_constants/separation = 100
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="VBoxContainer"]
+margin_right = 406.0
+margin_bottom = 76.0
+custom_fonts/font = ExtResource( 1 )
+text = "Godot Jump"
+
+[node name="Buttons" type="VBoxContainer" parent="VBoxContainer"]
+margin_left = 103.0
+margin_top = 176.0
+margin_right = 303.0
+margin_bottom = 326.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
+custom_constants/separation = 15
+
+[node name="PlayButton" type="Button" parent="VBoxContainer/Buttons"]
+margin_right = 200.0
+margin_bottom = 40.0
+text = "Play"
+
+[node name="CreditsButton" type="Button" parent="VBoxContainer/Buttons"]
+margin_top = 55.0
+margin_right = 200.0
+margin_bottom = 95.0
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer/Buttons"]
+margin_top = 110.0
+margin_right = 200.0
+margin_bottom = 150.0
+text = "Quit"
+
+[node name="CreditsPane" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPane"]
+margin_left = 57.0
+margin_top = 57.0
+margin_right = 663.0
+margin_bottom = 903.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PanelContainer" type="PanelContainer" parent="CreditsPane/VBoxContainer"]
+margin_right = 606.0
+margin_bottom = 802.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CreditsPane/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 599.0
+margin_bottom = 795.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer"]
+margin_right = 592.0
+margin_bottom = 1166.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+alignment = 1
+
+[node name="GodotEngineTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 34.0
+text = "Godot Engine"
+align = 1
+
+[node name="GodotEngine" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 580.0
+margin_bottom = 387.0
+custom_fonts/font = ExtResource( 3 )
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2021 Godot Engine contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="FreeTypeTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 403.0
+margin_right = 580.0
+margin_bottom = 437.0
+text = "FreeType"
+align = 1
+
+[node name="FreeType" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 453.0
+margin_right = 580.0
+margin_bottom = 484.0
+custom_fonts/font = ExtResource( 3 )
+text = "Portions of this software are copyright © 1996-2020 The FreeType Project (www.freetype.org). All rights reserved."
+autowrap = true
+
+[node name="ENetTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 500.0
+margin_right = 580.0
+margin_bottom = 534.0
+text = "ENet"
+align = 1
+
+[node name="ENet" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 550.0
+margin_right = 580.0
+margin_bottom = 836.0
+custom_fonts/font = ExtResource( 3 )
+text = "Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="MBedTLSTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 852.0
+margin_right = 580.0
+margin_bottom = 886.0
+text = "MBedTLS"
+align = 1
+
+[node name="MBedTLS" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 902.0
+margin_right = 580.0
+margin_bottom = 1086.0
+custom_fonts/font = ExtResource( 3 )
+text = "Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+autowrap = true
+
+[node name="RoboSapienTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1102.0
+margin_right = 580.0
+margin_bottom = 1136.0
+text = "RoboSapien"
+align = 1
+
+[node name="RoboSapien" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1152.0
+margin_right = 580.0
+margin_bottom = 1166.0
+custom_fonts/font = ExtResource( 3 )
+text = "This font may be freely distributed and is free for all non-commercial uses."
+autowrap = true
+
+[node name="CreditsBackButton" type="Button" parent="CreditsPane/VBoxContainer"]
+margin_left = 203.0
+margin_top = 806.0
+margin_right = 403.0
+margin_bottom = 846.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/Buttons/PlayButton" to="." method="_on_PlayButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Buttons/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="CreditsPane/VBoxContainer/CreditsBackButton" to="." method="_on_CreditsBackButton_pressed"]
