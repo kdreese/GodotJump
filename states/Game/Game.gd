@@ -2,38 +2,31 @@ extends Node2D
 
 
 const CHUNK_TABLE = [
-	["BaseTemplate", true],
-	["BaseTemplate", false],
-	["SquishTemplate", true],
-	["SquishTemplate", false],
-	["SpacedTemplate", true],
-	["BaseSpringTemplate", true],
-	["BaseJetpackTemplate", true],
-	["BaseBlackholeTemplate", true],
-	["BaseBlackholeTemplate", false],
-	["BlackholeReverseTemplate", false],	# reverse template solves for blackhole density on the right
-	["BlackholeAvoidTemplate", false],
+#	[name,               randomization, spawn probabilities array(SPA)]
+	["BaseTemplate",             true,  [50.0, 40.0, 30.0, 15.0]],
+	["BaseTemplate",             false, [10.0, 5.0,  0.0,  0.0]],
+	["SquishTemplate",           true,  [25.0, 20.0, 12.5, 7.5]],
+	["SquishTemplate",           false, [10.0, 5.0,  0.0,  0.0]],
+	["SpacedTemplate",           true,  [5.0,  10.0, 30.0, 30.0]],
+	["BaseSpringTemplate",       true,  [0.0,  10.0, 10.0, 10.0]],
+	["BaseJetpackTemplate",      true,  [0.0,  10.0, 10.0, 10.0]],
+	["BaseBlackholeTemplate",    true,  [0.0,  0.0,  2.5,  20.0]],
+	["BaseBlackholeTemplate",    false, [0.0,  0.0,  2.5,  0.0]],
+	["BlackholeReverseTemplate", false, [0.0,  0.0,  2.5,  0.0]],
+	["BlackholeAvoidTemplate",   false, [0.0,  0.0,  0.0,  7.5]],
 ]
+# Each unit of SPA corresponds to a range in the breakpoints
+# http://www.kehomsforge.com/tutorials/single/GDWeightedRandom
+
+const SPAWN_PROBABILITY_BREAKPOINTS = [1000, 4000, 6000]
 
 const Platform = preload("res://objects/Platform/Platform.tscn")
 
 const PLATFORM_OFFSCREEN_OFFSET := 100.0
 const PLATFORM_RANGE = 250.0	# The max horizontal range from the center of the viewport the platforms will vary
 
-var spawn_probability_table = [
-	[50.0, 40.0, 30.0, 15.0, 50.0],
-	[10.0, 5.0, 0.0, 0.0, 60.0],
-	[25.0, 20.0, 12.5, 7.5, 85.0],
-	[10.0, 5.0, 0.0, 0.0, 95.0],
-	[5.0, 10.0, 30.0, 30.0, 100.0],
-	[0.0, 10.0, 10.0, 10.0, 100.0],
-	[0.0, 10.0, 10.0, 10.0, 100.0],
-	[0.0, 0.0, 2.5, 20.0, 100.0],
-	[0.0, 0.0, 2.5, 0.0, 100.0],
-	[0.0, 0.0, 2.5, 0.0, 100.0],
-	[0.0, 0.0, 0.0, 7.5, 100.0],
-]
-var spawn_probability_breakpoints = [1000, 4000, 6000]
+# Initialize the table with the values associated with the easiest difficulty
+var spawn_probability_table = [50.0, 60.0, 85.0, 95.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0, 100.0]
 var spawn_level := 0
 var total_probability := 100.0
 
@@ -60,12 +53,13 @@ func _process(_delta: float) -> void:
 	$Camera2D.position.y = highest_y + camera_y_offset
 	score = (-highest_y / 10) as int
 	$CanvasLayer/UI/Label.text = "Score: %d" % score
-	if (spawn_level < spawn_probability_breakpoints.size()) and (score > spawn_probability_breakpoints[spawn_level]):
+	# Increment spawning difficulty level
+	if (spawn_level < SPAWN_PROBABILITY_BREAKPOINTS.size()) and (score > SPAWN_PROBABILITY_BREAKPOINTS[spawn_level]):
 		spawn_level += 1
 		total_probability = 0.0
-		for i in spawn_probability_table:
-			total_probability += i[spawn_level]
-			i[i.size() - 1] = total_probability
+		for i in spawn_probability_table.size():
+			total_probability += CHUNK_TABLE[i][2][spawn_level]
+			spawn_probability_table[i] = total_probability
 
 
 func _physics_process(_delta: float) -> void:
@@ -86,8 +80,8 @@ func generate_chunks() -> void:
 	while view_top_y - PLATFORM_OFFSCREEN_OFFSET < next_chunk_spawn_y:
 		var rand := rand_range(0.0, total_probability)
 		var table_count := 0
-		for i in spawn_probability_table:
-			if rand <= i[i.size() - 1]:
+		for i in spawn_probability_table.size():
+			if rand <= spawn_probability_table[i]:
 				break
 			table_count += 1
 		var chunk_info := CHUNK_TABLE[table_count] as Array
