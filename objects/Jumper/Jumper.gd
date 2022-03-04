@@ -21,6 +21,10 @@ onready var extents := ($CollisionShape2D.shape as RectangleShape2D).extents
 onready var bounds := get_viewport_rect().size
 
 
+func _process(delta: float) -> void:
+	$Inside.texture_rotation += delta
+
+
 func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
 	if jetpack_timer > 0:
