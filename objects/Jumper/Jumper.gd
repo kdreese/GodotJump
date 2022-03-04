@@ -40,6 +40,7 @@ func _physics_process(delta: float) -> void:
 		$AnimationPlayer.play("bounce")
 		if get_last_slide_collision().collider.is_in_group("spring"):
 			_velocity.y = SPRING_SPEED
+			get_last_slide_collision().collider.get_node("AnimationPlayer").play("spring")
 		else:
 			_velocity.y = BOUNCE_SPEED
 
