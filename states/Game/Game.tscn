@@ -42,4 +42,60 @@ position = Vector2( 0, 104 )
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 4 )]
 
+[node name="PauseScreen" type="ColorRect" parent="CanvasLayer"]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.313726 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/PauseScreen"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PauseScreen/CenterContainer"]
+margin_left = 235.0
+margin_top = 455.0
+margin_right = 485.0
+margin_bottom = 604.0
+custom_constants/separation = 25
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Paused" type="Label" parent="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 34.0
+text = "PAUSED"
+align = 1
+valign = 1
+
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer"]
+margin_top = 59.0
+margin_right = 250.0
+margin_bottom = 149.0
+custom_constants/separation = 10
+alignment = 1
+
+[node name="ResumeButton" type="Button" parent="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons"]
+margin_right = 250.0
+margin_bottom = 40.0
+rect_min_size = Vector2( 250, 0 )
+text = "Resume"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons"]
+margin_top = 50.0
+margin_right = 250.0
+margin_bottom = 90.0
+text = "Exit to Menu"
+
 [connection signal="game_over" from="GameObjects/Jumper" to="." method="_on_Jumper_game_over"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ExitButton" to="." method="_on_ExitButton_pressed"]

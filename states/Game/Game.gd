@@ -75,9 +75,8 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("pause_escape"):
-		# TODO - add pause screen
-		var error = get_tree().change_scene("res://states/MainMenu/MainMenu.tscn")
-		assert(not error)
+		get_tree().paused = true
+		$CanvasLayer/PauseScreen.visible = true
 
 
 func generate_chunks() -> void:
@@ -113,3 +112,14 @@ func spawn_chunk(chunk_path: String, randomize_x: bool = false) -> void:
 
 func _on_Jumper_game_over() -> void:
 	$CanvasLayer/UI.game_over()
+
+
+func _on_ResumeButton_pressed() -> void:
+	get_tree().paused = false
+	$CanvasLayer/PauseScreen.visible = false
+
+
+func _on_ExitButton_pressed() -> void:
+	get_tree().paused = false
+	var error = get_tree().change_scene("res://states/MainMenu/MainMenu.tscn")
+	assert(not error)
