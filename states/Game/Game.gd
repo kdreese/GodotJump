@@ -121,5 +121,5 @@ func _on_ResumeButton_pressed() -> void:
 
 func _on_ExitButton_pressed() -> void:
 	get_tree().paused = false
-	var error = get_tree().change_scene("res://states/MainMenu/MainMenu.tscn")
+	var error := get_tree().change_scene("res://states/MainMenu/MainMenu.tscn")
 	assert(not error)
