@@ -31,6 +31,7 @@ func _physics_process(delta: float) -> void:
 		jetpack_timer -= delta
 		if jetpack_timer <= 0:
 			_gravity = GRAVITY
+			$JetpackParticles.emitting = false
 
 	_velocity.y += _gravity * delta
 	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
@@ -59,6 +60,7 @@ func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 		jetpack_timer = JETPACK_DURATION
 		_velocity.y = JETPACK_SPEED
 		_gravity = JETPACK_GRAVITY
+		$JetpackParticles.emitting = true
 
 
 func _on_EnemyDetectionArea_body_entered(_body: Node) -> void:
