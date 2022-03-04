@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://objects/Jumper/Jumper.gd" type="Script" id=2]
 
@@ -21,6 +21,23 @@ width = 128
 height = 128
 seamless = true
 noise = SubResource( 7 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "bounce"
+length = 0.4
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.25, 0.4 ),
+"transitions": PoolRealArray( 1, -2, -2, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 0.9 ), Vector2( 0.9, 1.1 ), Vector2( 1, 1 ) ]
+}
 
 [node name="Jumper" type="KinematicBody2D"]
 z_index = 100
@@ -51,12 +68,15 @@ color = Color( 1.75, 2, 1.75, 1 )
 antialiased = true
 polygon = PoolVector2Array( -12, 12, -28, 0, -12, -32, 12, -32, 28, 0, 12, 12, 20, 32, -20, 32 )
 
-[node name="Inside" type="Polygon2D" parent="."]
+[node name="Inside" type="Polygon2D" parent="Body"]
 color = Color( 1.5, 0, 1.5, 1 )
 antialiased = true
 texture = SubResource( 8 )
 texture_scale = Vector2( 8, 8 )
 polygon = PoolVector2Array( 4, 8, -4, 8, -16, 0, -8, -24, 8, -24, 16, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/bounce = SubResource( 9 )
 
 [connection signal="area_entered" from="PowerupDetectionArea" to="." method="_on_PowerupDetectionArea_area_entered"]
 [connection signal="area_entered" from="EnemyDetectionArea" to="." method="_on_EnemyDetectionArea_area_entered"]

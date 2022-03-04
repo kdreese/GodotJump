@@ -22,7 +22,7 @@ onready var bounds := get_viewport_rect().size
 
 
 func _process(delta: float) -> void:
-	$Inside.texture_rotation += delta
+	$Body/Inside.texture_rotation += delta
 
 
 func _physics_process(delta: float) -> void:
@@ -36,6 +36,7 @@ func _physics_process(delta: float) -> void:
 	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	if is_on_floor():
+		$AnimationPlayer.play("bounce")
 		if get_last_slide_collision().collider.is_in_group("spring"):
 			_velocity.y = SPRING_SPEED
 		else:
