@@ -21,19 +21,26 @@ onready var extents := ($CollisionShape2D.shape as RectangleShape2D).extents
 onready var bounds := get_viewport_rect().size
 
 
+func _process(delta: float) -> void:
+	$Body/Inside.texture_rotation += delta
+
+
 func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
 	if jetpack_timer > 0:
 		jetpack_timer -= delta
 		if jetpack_timer <= 0:
 			_gravity = GRAVITY
+			$JetpackParticles.emitting = false
 
 	_velocity.y += _gravity * delta
 	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
 	_velocity = move_and_slide(_velocity, Vector2.UP)
 	if is_on_floor():
+		$AnimationPlayer.play("bounce")
 		if get_last_slide_collision().collider.is_in_group("spring"):
 			_velocity.y = SPRING_SPEED
+			get_last_slide_collision().collider.get_node("AnimationPlayer").play("spring")
 		else:
 			_velocity.y = BOUNCE_SPEED
 
@@ -54,6 +61,7 @@ func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 		jetpack_timer = JETPACK_DURATION
 		_velocity.y = JETPACK_SPEED
 		_gravity = JETPACK_GRAVITY
+		$JetpackParticles.emitting = true
 
 
 func _on_EnemyDetectionArea_body_entered(_body: Node) -> void:
