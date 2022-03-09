@@ -41,7 +41,7 @@ func _ready() -> void:
 	randomize()
 	$GameObjects/ChunkStart.free()
 	if Global.music_enabled:
-		$MusicPlayer.play()
+		$BackgroundMusic.play()
 
 	generate_chunks()
 
@@ -116,6 +116,8 @@ func spawn_chunk(chunk_path: String, randomize_x: bool = false) -> void:
 
 func _on_Jumper_game_over() -> void:
 	$CanvasLayer/UI.game_over()
+	if Global.sound_enabled:
+		$DeathSound.play()
 
 
 func _on_ResumeButton_pressed() -> void:
