@@ -9,6 +9,9 @@
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 4 )]
 offset = Vector2( 0, 500 )
@@ -95,18 +98,18 @@ size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer"]
 margin_right = 592.0
-margin_bottom = 1411.0
+margin_bottom = 1508.0
 size_flags_horizontal = 3
 custom_constants/separation = 16
 alignment = 1
 
-[node name="CronAudioTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="8BitMusicTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_right = 580.0
 margin_bottom = 34.0
-text = "Cron Audio"
+text = "8-bit Music Free"
 align = 1
 
-[node name="CronAudio" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="8BitMusic" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_top = 50.0
 margin_right = 580.0
 margin_bottom = 98.0
@@ -133,17 +136,33 @@ https://assetstore.unity.com/packages/audio/sound-fx/retro-sound-effects-22153
 www.youtube.com/channel/UCWoc81KKlDs79nIJSFIuMNQ"
 autowrap = true
 
-[node name="GodotEngineTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="StarsParallaxTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_top = 245.0
 margin_right = 580.0
 margin_bottom = 279.0
+text = "Stars - Parallax Backgrounds"
+align = 1
+
+[node name="StarsParallax" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 295.0
+margin_right = 580.0
+margin_bottom = 326.0
+custom_fonts/font = ExtResource( 3 )
+text = "Created by Bonsaiheldin, Licensed Under CC0: Public Domain
+https://opengameart.org/content/stars-parallax-backgrounds"
+autowrap = true
+
+[node name="GodotEngineTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 342.0
+margin_right = 580.0
+margin_bottom = 376.0
 text = "Godot Engine"
 align = 1
 
 [node name="GodotEngine" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 295.0
+margin_top = 392.0
 margin_right = 580.0
-margin_bottom = 632.0
+margin_bottom = 729.0
 custom_fonts/font = ExtResource( 3 )
 text = "This game uses Godot Engine, available under the following license:
 
@@ -157,31 +176,31 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="FreeTypeTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 648.0
+margin_top = 745.0
 margin_right = 580.0
-margin_bottom = 682.0
+margin_bottom = 779.0
 text = "FreeType"
 align = 1
 
 [node name="FreeType" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 698.0
+margin_top = 795.0
 margin_right = 580.0
-margin_bottom = 729.0
+margin_bottom = 826.0
 custom_fonts/font = ExtResource( 3 )
 text = "Portions of this software are copyright © 1996-2020 The FreeType Project (www.freetype.org). All rights reserved."
 autowrap = true
 
 [node name="ENetTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 745.0
+margin_top = 842.0
 margin_right = 580.0
-margin_bottom = 779.0
+margin_bottom = 876.0
 text = "ENet"
 align = 1
 
 [node name="ENet" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 795.0
+margin_top = 892.0
 margin_right = 580.0
-margin_bottom = 1081.0
+margin_bottom = 1178.0
 custom_fonts/font = ExtResource( 3 )
 text = "Copyright (c) 2002-2020 Lee Salzman
 
@@ -193,16 +212,16 @@ THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMP
 autowrap = true
 
 [node name="MBedTLSTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1097.0
+margin_top = 1194.0
 margin_right = 580.0
-margin_bottom = 1131.0
+margin_bottom = 1228.0
 text = "MBedTLS"
 align = 1
 
 [node name="MBedTLS" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1147.0
+margin_top = 1244.0
 margin_right = 580.0
-margin_bottom = 1331.0
+margin_bottom = 1428.0
 custom_fonts/font = ExtResource( 3 )
 text = "Copyright The Mbed TLS Contributors
 
@@ -214,16 +233,16 @@ Unless required by applicable law or agreed to in writing, software distributed 
 autowrap = true
 
 [node name="RoboSapienTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1347.0
+margin_top = 1444.0
 margin_right = 580.0
-margin_bottom = 1381.0
+margin_bottom = 1478.0
 text = "RoboSapien"
 align = 1
 
 [node name="RoboSapien" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 1397.0
+margin_top = 1494.0
 margin_right = 580.0
-margin_bottom = 1411.0
+margin_bottom = 1508.0
 custom_fonts/font = ExtResource( 3 )
 text = "This font may be freely distributed and is free for all non-commercial uses."
 autowrap = true
