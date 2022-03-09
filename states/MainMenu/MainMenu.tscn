@@ -103,16 +103,50 @@ size_flags_horizontal = 3
 custom_constants/separation = 16
 alignment = 1
 
-[node name="GodotEngineTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+[node name="CronAudioTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
 margin_right = 580.0
 margin_bottom = 34.0
+text = "Cron Audio"
+align = 1
+
+[node name="CronAudio" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 580.0
+margin_bottom = 98.0
+custom_fonts/font = ExtResource( 3 )
+text = "Background music loop from Cron Audio acquired through the Unity Assets Store:
+https://assetstore.unity.com/packages/audio/music/electronic/8-bit-music-free-136967
+soundcloud.com/cron-audio"
+autowrap = true
+
+[node name="RetroSoundPackTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 114.0
+margin_right = 580.0
+margin_bottom = 148.0
+text = "Retro Sound Pack"
+align = 1
+
+[node name="RetroSoundPack" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 164.0
+margin_right = 580.0
+margin_bottom = 229.0
+custom_fonts/font = ExtResource( 3 )
+text = "Sound Effects from the Retro Sound Pack by Luiz Octávio (Mulula) acquired through the Unity Assets Store:
+https://assetstore.unity.com/packages/audio/sound-fx/retro-sound-effects-22153
+www.youtube.com/channel/UCWoc81KKlDs79nIJSFIuMNQ"
+autowrap = true
+
+[node name="GodotEngineTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 245.0
+margin_right = 580.0
+margin_bottom = 279.0
 text = "Godot Engine"
 align = 1
 
 [node name="GodotEngine" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 50.0
+margin_top = 295.0
 margin_right = 580.0
-margin_bottom = 387.0
+margin_bottom = 632.0
 custom_fonts/font = ExtResource( 3 )
 text = "This game uses Godot Engine, available under the following license:
 
@@ -123,40 +157,6 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
-autowrap = true
-
-[node name="CronAudioTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 403.0
-margin_right = 580.0
-margin_bottom = 437.0
-text = "Cron Audio"
-align = 1
-
-[node name="CronAudio" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 453.0
-margin_right = 580.0
-margin_bottom = 501.0
-custom_fonts/font = ExtResource( 3 )
-text = "Background music loop from Cron Audio acquired through the Unity Assets Store:
-https://assetstore.unity.com/packages/audio/music/electronic/8-bit-music-free-136967
-soundcloud.com/cron-audio"
-autowrap = true
-
-[node name="RetroSoundPackTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 517.0
-margin_right = 580.0
-margin_bottom = 551.0
-text = "Retro Sound Pack"
-align = 1
-
-[node name="RetroSoundPack" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
-margin_top = 567.0
-margin_right = 580.0
-margin_bottom = 632.0
-custom_fonts/font = ExtResource( 3 )
-text = "Sound Effects from the Retro Sound Pack by Luiz Octávio (Mulula) acquired through the Unity Assets Store:
-https://assetstore.unity.com/packages/audio/sound-fx/retro-sound-effects-22153
-www.youtube.com/channel/UCWoc81KKlDs79nIJSFIuMNQ"
 autowrap = true
 
 [node name="FreeTypeTitle" type="Label" parent="CreditsPane/VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
