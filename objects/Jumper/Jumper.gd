@@ -29,8 +29,6 @@ func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
 	if jetpack_timer > 0:
 		jetpack_timer -= delta
-		if Global.sound_enabled:
-			$JetpackSound.play()
 		if jetpack_timer <= 0:
 			_gravity = GRAVITY
 			$JetpackParticles.emitting = false
@@ -69,6 +67,8 @@ func _on_PowerupDetectionArea_area_entered(area: Node) -> void:
 		_velocity.y = JETPACK_SPEED
 		_gravity = JETPACK_GRAVITY
 		$JetpackParticles.emitting = true
+		if Global.sound_enabled:
+			$JetpackSound.play()
 
 
 func _on_EnemyDetectionArea_body_entered(_body: Node) -> void:

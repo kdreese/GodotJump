@@ -18,7 +18,7 @@ const CHUNK_TABLE = [
 # Each unit of SPA corresponds to a range in the breakpoints
 # http://www.kehomsforge.com/tutorials/single/GDWeightedRandom
 
-const SPAWN_PROBABILITY_BREAKPOINTS = [500, 2000, 3000]
+const SPAWN_PROBABILITY_BREAKPOINTS = [500, 1500, 2500]
 
 const Platform = preload("res://objects/Platform/Platform.tscn")
 
@@ -41,7 +41,7 @@ func _ready() -> void:
 	randomize()
 	$GameObjects/ChunkStart.free()
 	if Global.music_enabled:
-		$MusicPlayer.play()
+		$BackgroundMusic.play()
 
 	generate_chunks()
 
@@ -81,6 +81,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = true
 			$CanvasLayer/PauseScreen.visible = true
 			$CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ResumeButton.grab_focus()
+			$BackgroundMusic.volume_db = -30
 
 
 func generate_chunks() -> void:
@@ -116,11 +117,14 @@ func spawn_chunk(chunk_path: String, randomize_x: bool = false) -> void:
 
 func _on_Jumper_game_over() -> void:
 	$CanvasLayer/UI.game_over()
+	if Global.sound_enabled:
+		$DeathSound.play()
 
 
 func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
 	$CanvasLayer/PauseScreen.visible = false
+	$BackgroundMusic.volume_db = -15
 
 
 func _on_ExitButton_pressed() -> void:
