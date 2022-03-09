@@ -81,6 +81,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().paused = true
 			$CanvasLayer/PauseScreen.visible = true
 			$CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ResumeButton.grab_focus()
+			$BackgroundMusic.volume_db = -30
 
 
 func generate_chunks() -> void:
@@ -123,6 +124,7 @@ func _on_Jumper_game_over() -> void:
 func _on_ResumeButton_pressed() -> void:
 	get_tree().paused = false
 	$CanvasLayer/PauseScreen.visible = false
+	$BackgroundMusic.volume_db = -15
 
 
 func _on_ExitButton_pressed() -> void:
