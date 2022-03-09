@@ -29,9 +29,11 @@ func _physics_process(delta: float) -> void:
 	_velocity.x = Input.get_axis("move_left", "move_right") * MOVE_SPEED
 	if jetpack_timer > 0:
 		jetpack_timer -= delta
+		$jetpack.play()
 		if jetpack_timer <= 0:
 			_gravity = GRAVITY
 			$JetpackParticles.emitting = false
+			$jetpack.stop()
 
 	_velocity.y += _gravity * delta
 	_velocity.y = min(_velocity.y, TERMINAL_VELOCITY)
@@ -41,8 +43,10 @@ func _physics_process(delta: float) -> void:
 		if get_last_slide_collision().collider.is_in_group("spring"):
 			_velocity.y = SPRING_SPEED
 			get_last_slide_collision().collider.get_node("AnimationPlayer").play("spring")
+			$springJump.play()
 		else:
 			_velocity.y = BOUNCE_SPEED
+			$normalJump.play()
 
 	if position.x < -bounds.x / 2 - extents.x:
 		position.x += bounds.x + (2 * extents.x)
