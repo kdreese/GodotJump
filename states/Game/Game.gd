@@ -18,7 +18,7 @@ const CHUNK_TABLE = [
 # Each unit of SPA corresponds to a range in the breakpoints
 # http://www.kehomsforge.com/tutorials/single/GDWeightedRandom
 
-const SPAWN_PROBABILITY_BREAKPOINTS = [500, 2000, 3000]
+const SPAWN_PROBABILITY_BREAKPOINTS = [500, 1500, 2500]
 
 const Platform = preload("res://objects/Platform/Platform.tscn")
 
