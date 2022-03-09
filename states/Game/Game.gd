@@ -75,8 +75,10 @@ func _physics_process(_delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action("pause_escape"):
-		get_tree().paused = true
-		$CanvasLayer/PauseScreen.visible = true
+		if not $CanvasLayer/UI/GameOver.visible:
+			get_tree().paused = true
+			$CanvasLayer/PauseScreen.visible = true
+			$CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ResumeButton.grab_focus()
 
 
 func generate_chunks() -> void:

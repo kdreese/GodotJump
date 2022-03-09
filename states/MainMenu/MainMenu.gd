@@ -4,6 +4,7 @@ extends Control
 func _ready() -> void:
 	if OS.get_name() == "HTML5":
 		$VBoxContainer/Buttons/QuitButton.hide()
+	$VBoxContainer/Buttons/PlayButton.grab_focus()
 
 
 func _on_PlayButton_pressed() -> void:
@@ -13,6 +14,8 @@ func _on_PlayButton_pressed() -> void:
 
 func _on_CreditsButton_pressed() -> void:
 	$CreditsPane.show()
+	$VBoxContainer/Buttons.hide()
+	$CreditsPane/VBoxContainer/CreditsBackButton.grab_focus()
 
 
 func _on_QuitButton_pressed() -> void:
@@ -21,3 +24,5 @@ func _on_QuitButton_pressed() -> void:
 
 func _on_CreditsBackButton_pressed() -> void:
 	$CreditsPane.hide()
+	$VBoxContainer/Buttons.show()
+	$VBoxContainer/Buttons/CreditsButton.grab_focus()
