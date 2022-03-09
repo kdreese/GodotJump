@@ -1,0 +1,216 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://fonts/SmallFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://states/Game/ParallaxBackground.tscn" type="PackedScene" id=2]
+[ext_resource path="res://states/MainMenu/CreditsMenu.gd" type="Script" id=3]
+
+[node name="CreditsMenu" type="ColorRect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.392157 )
+script = ExtResource( 3 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 2 )]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -303.0
+margin_top = -423.0
+margin_right = 303.0
+margin_bottom = 423.0
+
+[node name="PanelContainer" type="PanelContainer" parent="VBoxContainer"]
+margin_right = 606.0
+margin_bottom = 802.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 599.0
+margin_bottom = 795.0
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/PanelContainer/ScrollContainer"]
+margin_right = 580.0
+margin_bottom = 1622.0
+size_flags_horizontal = 3
+custom_constants/separation = 16
+alignment = 1
+
+[node name="GodotJumpTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_right = 580.0
+margin_bottom = 34.0
+text = "Godot Jump"
+align = 1
+
+[node name="GodotJump" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 580.0
+margin_bottom = 64.0
+custom_fonts/font = ExtResource( 1 )
+text = "Godot Jump is a simple clone of Doodle Jump made by Terry Hearst and Kyle Reese."
+autowrap = true
+
+[node name="8BitMusicTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 80.0
+margin_right = 580.0
+margin_bottom = 114.0
+text = "8-bit Music Free"
+align = 1
+
+[node name="8BitMusic" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 130.0
+margin_right = 580.0
+margin_bottom = 178.0
+custom_fonts/font = ExtResource( 1 )
+text = "Background music loop from Cron Audio acquired through the Unity Assets Store:
+https://assetstore.unity.com/packages/audio/music/electronic/8-bit-music-free-136967
+soundcloud.com/cron-audio"
+autowrap = true
+
+[node name="RetroSoundPackTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 194.0
+margin_right = 580.0
+margin_bottom = 228.0
+text = "Retro Sound Pack"
+align = 1
+
+[node name="RetroSoundPack" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 244.0
+margin_right = 580.0
+margin_bottom = 309.0
+custom_fonts/font = ExtResource( 1 )
+text = "Sound Effects from the Retro Sound Pack by Luiz Octávio (Mulula) acquired through the Unity Assets Store:
+https://assetstore.unity.com/packages/audio/sound-fx/retro-sound-effects-22153
+www.youtube.com/channel/UCWoc81KKlDs79nIJSFIuMNQ"
+autowrap = true
+
+[node name="StarsParallaxTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 325.0
+margin_right = 580.0
+margin_bottom = 359.0
+text = "Stars - Parallax Backgrounds"
+align = 1
+
+[node name="StarsParallax" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 375.0
+margin_right = 580.0
+margin_bottom = 406.0
+custom_fonts/font = ExtResource( 1 )
+text = "Created by Bonsaiheldin, Licensed Under CC0: Public Domain
+https://opengameart.org/content/stars-parallax-backgrounds"
+autowrap = true
+
+[node name="RoboSapienTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 422.0
+margin_right = 580.0
+margin_bottom = 456.0
+text = "Robo Sapien"
+align = 1
+
+[node name="RoboSapien" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 472.0
+margin_right = 580.0
+margin_bottom = 520.0
+custom_fonts/font = ExtResource( 1 )
+text = "Font by Daniel Zadorozny. This font may be freely distributed and is free for all non-commercial uses.
+https://www.dafont.com/robo-sapien.font"
+autowrap = true
+
+[node name="GodotEngineTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 536.0
+margin_right = 580.0
+margin_bottom = 570.0
+text = "Godot Engine"
+align = 1
+
+[node name="GodotEngine" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 586.0
+margin_right = 580.0
+margin_bottom = 923.0
+custom_fonts/font = ExtResource( 1 )
+text = "This game uses Godot Engine, available under the following license:
+
+Copyright (c) 2007-2021 Juan Linietsky, Ariel Manzur. Copyright (c) 2014-2021 Godot Engine contributors.
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="FreeTypeTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 939.0
+margin_right = 580.0
+margin_bottom = 973.0
+text = "FreeType"
+align = 1
+
+[node name="FreeType" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 989.0
+margin_right = 580.0
+margin_bottom = 1020.0
+custom_fonts/font = ExtResource( 1 )
+text = "Portions of this software are copyright © 1996-2020 The FreeType Project (www.freetype.org). All rights reserved."
+autowrap = true
+
+[node name="ENetTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1036.0
+margin_right = 580.0
+margin_bottom = 1070.0
+text = "ENet"
+align = 1
+
+[node name="ENet" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1086.0
+margin_right = 580.0
+margin_bottom = 1372.0
+custom_fonts/font = ExtResource( 1 )
+text = "Copyright (c) 2002-2020 Lee Salzman
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE."
+autowrap = true
+
+[node name="MBedTLSTitle" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1388.0
+margin_right = 580.0
+margin_bottom = 1422.0
+text = "MBedTLS"
+align = 1
+
+[node name="MBedTLS" type="Label" parent="VBoxContainer/PanelContainer/ScrollContainer/VBoxContainer"]
+margin_top = 1438.0
+margin_right = 580.0
+margin_bottom = 1622.0
+custom_fonts/font = ExtResource( 1 )
+text = "Copyright The Mbed TLS Contributors
+
+Licensed under the Apache License, Version 2.0 (the \"License\"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an \"AS IS\" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License."
+autowrap = true
+
+[node name="CreditsBackButton" type="Button" parent="VBoxContainer"]
+margin_left = 203.0
+margin_top = 806.0
+margin_right = 403.0
+margin_bottom = 846.0
+rect_min_size = Vector2( 200, 0 )
+size_flags_horizontal = 4
+text = "Back"
+
+[connection signal="pressed" from="VBoxContainer/CreditsBackButton" to="." method="_on_CreditsBackButton_pressed"]

@@ -40,7 +40,8 @@ onready var camera_y_offset := ($Camera2D as Camera2D).position.y
 func _ready() -> void:
 	randomize()
 	$GameObjects/ChunkStart.free()
-	$AudioStreamPlayer.play()
+	if Global.music_enabled:
+		$MusicPlayer.play()
 
 	generate_chunks()
 

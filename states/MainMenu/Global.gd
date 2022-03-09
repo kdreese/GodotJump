@@ -5,6 +5,8 @@ const CONFIG_PATH := "user://config.cfg"
 
 
 var high_score := 0
+var sound_enabled := true
+var music_enabled := true
 
 
 func _ready() -> void:
@@ -30,20 +32,25 @@ func load_game() -> void:
 	var config_file := File.new()
 	var error := config_file.open(CONFIG_PATH, File.READ)
 	if error:
+		print("Save file could not be opened.")
 		return
 
 	var config = str2var(config_file.get_as_text())
 	config_file.close()
 
 	if not typeof(config) == TYPE_DICTIONARY:
+		printerr("Save file corrupt.")
 		return
 
 	if OS.get_name() != "HTML5":
 		if "fullscreen" in config and typeof(config["fullscreen"]) == TYPE_BOOL:
 			OS.window_fullscreen = config["fullscreen"]
-
 	if "high_score" in config and typeof(config["high_score"]) == TYPE_INT:
 		high_score = config["high_score"]
+	if "sound_enabled" in config and typeof(config["sound_enabled"]) == TYPE_BOOL:
+		sound_enabled = config["sound_enabled"]
+	if "music_enabled" in config and typeof(config["music_enabled"]) == TYPE_BOOL:
+		music_enabled = config["music_enabled"]
 
 
 func save_game() -> void:
@@ -51,13 +58,14 @@ func save_game() -> void:
 
 	if OS.get_name() != "HTML5":
 		config["fullscreen"] = OS.window_fullscreen
-
 	config["high_score"] = high_score
+	config["sound_enabled"] = sound_enabled
+	config["music_enabled"] = music_enabled
 
 	var config_file := File.new()
 	var error := config_file.open(CONFIG_PATH, File.WRITE)
 	if error:
-		print("Error, could not save game")
+		printerr("ERROR: could not save game")
 		return
 
 	config_file.store_line(var2str(config))

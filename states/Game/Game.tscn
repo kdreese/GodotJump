@@ -100,7 +100,7 @@ margin_right = 250.0
 margin_bottom = 90.0
 text = "Exit to Menu"
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 7 )
 volume_db = -15.0

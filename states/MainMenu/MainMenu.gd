@@ -13,16 +13,14 @@ func _on_PlayButton_pressed() -> void:
 
 
 func _on_CreditsButton_pressed() -> void:
-	$CreditsPane.show()
-	$VBoxContainer/Buttons.hide()
-	$CreditsPane/VBoxContainer/CreditsBackButton.grab_focus()
+	var error := get_tree().change_scene("res://states/MainMenu/CreditsMenu.tscn")
+	assert(not error)
+
+
+func _on_OptionsButton_pressed() -> void:
+	var error := get_tree().change_scene("res://states/MainMenu/OptionsMenu.tscn")
+	assert(not error)
 
 
 func _on_QuitButton_pressed() -> void:
 	get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
-
-
-func _on_CreditsBackButton_pressed() -> void:
-	$CreditsPane.hide()
-	$VBoxContainer/Buttons.show()
-	$VBoxContainer/Buttons/CreditsButton.grab_focus()
