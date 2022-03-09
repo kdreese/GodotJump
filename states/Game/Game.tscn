@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://objects/Jumper/Jumper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://objects/Platform/Platform.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://states/Game/UI.tscn" type="PackedScene" id=4]
 [ext_resource path="res://default_env.tres" type="Environment" id=5]
 [ext_resource path="res://states/Game/ParallaxBackground.tscn" type="PackedScene" id=6]
+[ext_resource path="res://sounds/cron_audio_8-bit_modern02.ogg" type="AudioStream" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 448, 40 )
@@ -98,6 +99,11 @@ margin_top = 50.0
 margin_right = 250.0
 margin_bottom = 90.0
 text = "Exit to Menu"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 7 )
+volume_db = -15.0
 
 [connection signal="game_over" from="GameObjects/Jumper" to="." method="_on_Jumper_game_over"]
 [connection signal="pressed" from="CanvasLayer/PauseScreen/CenterContainer/VBoxContainer/Buttons/ResumeButton" to="." method="_on_ResumeButton_pressed"]
