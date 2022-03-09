@@ -26,6 +26,7 @@ func game_over():
 	game_over_high_score_label.text = game_over_high_score_text % Global.high_score
 	$GameOver.show()
 	$GameOverAnimationPlayer.play("GameOverAnimation")
+	$GameOver/PanelContainer/VBoxContainer/HBoxContainer/ReplayButton.grab_focus()
 
 
 func _on_ReplayButton_pressed() -> void:
