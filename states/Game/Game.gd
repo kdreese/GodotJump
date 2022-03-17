@@ -119,6 +119,7 @@ func _on_Jumper_game_over() -> void:
 	$CanvasLayer/UI.game_over()
 	if Global.sound_enabled:
 		$DeathSound.play()
+	Global.save_game()
 
 
 func _on_ResumeButton_pressed() -> void:

@@ -23,14 +23,17 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_FullscreenButton_toggled(button_pressed: bool) -> void:
 	OS.window_fullscreen = button_pressed
+	Global.save_game()
 
 
 func _on_SoundButton_toggled(button_pressed: bool) -> void:
 	Global.sound_enabled = button_pressed
+	Global.save_game()
 
 
 func _on_MusicButton_toggled(button_pressed: bool) -> void:
 	Global.music_enabled = button_pressed
+	Global.save_game()
 
 
 func _on_OptionsBackButton_pressed() -> void:
