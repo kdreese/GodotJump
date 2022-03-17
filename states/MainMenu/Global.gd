@@ -19,6 +19,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if OS.get_name() == "HTML5":
 			return
 		OS.window_fullscreen = not OS.window_fullscreen
+		Global.save_game()
 		get_tree().set_input_as_handled()
 
 
